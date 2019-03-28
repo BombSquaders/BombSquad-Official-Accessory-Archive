@@ -1443,20 +1443,25 @@ class File:
                                  "but it will surely install succesfully.")
                 commit_hexsha = self.data["commit_sha"]
                 filename = self.data["filename"]
-                os.mkdir(modPath + self.data["dirname"])
+                """Re using the backup if generated last time while deleting the collection"""
+                if os.path.exists(modPath + self.data["dirname"]):
+                    for fileto in self.collectionFiles:
+                        os.rename(modPath+fileto+".bak", modPath+fileto)
+                else:
+                    os.mkdir(modPath + self.data["dirname"])
 
-                def yieldi(toyield):
-                    yield str(toyield)
+                    def yieldi(toyield):
+                        yield str(toyield)
 
-                for fileto in self.collectionFiles:
-                    url = "http://rawcdn.githack.com/" + USER_REPO + "/" + commit_hexsha + "/all-files/" + filename + "/" + str(
-                        fileto)
-                    url = yieldi(url)
-                    url = next(url).encode("ascii")
-                    data = urllib2.urlopen(url).read()
-                    with open(modPath + fileto, "wb") as f:
-                        f.write(data)
-                        f.close()
+                    for fileto in self.collectionFiles:
+                        url = "http://rawcdn.githack.com/" + USER_REPO + "/" + commit_hexsha + "/all-files/" + filename + "/" + str(
+                            fileto)
+                        url = yieldi(url)
+                        url = next(url).encode("ascii")
+                        data = urllib2.urlopen(url).read()
+                        with open(modPath + fileto, "wb") as f:
+                            f.write(data)
+                            f.close()
                 if callback:
                     callback(self, self.data)
                 if install:
