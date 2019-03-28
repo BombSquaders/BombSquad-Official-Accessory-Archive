@@ -31,7 +31,6 @@ def mod_url(data):
         if SUPPORTS_HTTPS:
             yield data["url"]
         url = str(data["url"]).replace("https", "http")
-        bs.screenMessage(url)
         yield url
 
 
@@ -51,10 +50,8 @@ class SimpleGetThread(threading.Thread):
     def __init__(self, url, callback=None):
         threading.Thread.__init__(self)
         if SUPPORTS_HTTPS:
-            bs.screenMessage(url)
             url = url
         else:
-            bs.screenMessage(url)
             url = url.replace("https", "http")
         self._url = url.encode("ascii")  # embedded python2.7 has weird encoding issues
         self._callback = callback or (lambda d: None)
