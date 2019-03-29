@@ -24,7 +24,7 @@ def uuid4():
 
 
 modPath = bs.getEnvironment()['userScriptsDirectory'] + "/"
-PROTOCOL_VERSION = 1.0
+PROTOCOL_VERSION = 1.134
 STAT_SERVER_URI = None  # currently https://stat-server.bs-oam.tk is being built for it
 SUPPORTS_HTTPS = hasattr(httplib, 'HTTPS')
 USER_REPO = "I-Am-The-Great/BombSquad-Official-Accessory-Archive"
@@ -186,9 +186,9 @@ def process_server_data(data):
     version = data["version"]
     if version > PROTOCOL_VERSION:
         print("version diff:", version, PROTOCOL_VERSION)
-        if version >= data["least-to-work"]:
-            return RedownloadAccInstaller()
         bs.screenMessage("there is a new update available for the accessories manager")
+        if PROTOCOL_VERSION < data["least-to-work"]:
+            return RedownloadAccInstaller()
     files = data["all-files"]
     contributors = data["contributors"]
     return files, contributors, version
@@ -480,8 +480,38 @@ class AccManagerWindow(Window):
         if refreshTabs:
             self._refreshTabs()
 
-        if self._selectedTab["label"] != "contributors":
-            bs.Widget(edit=self.fileInfoButton, label=bs.Lstr(value="Accessory Info"))
+        if self._selectedTab["label"] == "contributors":
+
+            bs.buttonWidget(edit=self.fileInfoButton, label=bs.Lstr(value="Contributor Info"))
+
+            visible = self.contributors[:]
+            for index, contributor in enumerate(visible):
+                color = (0.6, 0.6, 0.7, 1.0)
+
+                w = TextWidget(parent=self._columnWidget, size=(self._width - 40, 24),
+                               maxWidth=self._width - 110,
+                               text=contributor.name,
+                               hAlign='left', vAlign='center',
+                               color=color,
+                               alwaysHighlight=True,
+                               onSelectCall=bs.Call(self._cb_select_cont, index, contributor),
+                               onActivateCall=bs.Call(self._cb_info, True),
+                               selectable=True)
+                w.showBufferTop = 50
+                w.showBufferBottom = 50
+                # hitting up from top widget shoud jump to 'back;
+                if index == 0:
+                    tab_button = self.tabs[int((len(self.tabs) - 1) / 2)]["button"]
+                    w.upWidget = tab_button
+
+                if self._selectedCont and contributor.name == self._selectedCont.name:
+                    self._columnWidget.set(selectedChild=w, visibleChild=w)
+
+                self._contributorWidgets.append(w)
+
+        else:
+
+            bs.buttonWidget(edit=self.fileInfoButton, label=bs.Lstr(value="Accessory Info"))
 
             while not self.sortMode['condition'](self.files):
                 self.sortMode = self.sortModes[self.sortMode['next']]
@@ -522,33 +552,6 @@ class AccManagerWindow(Window):
                     self._columnWidget.set(selectedChild=w, visibleChild=w)
 
                 self._fileWidgets.append(w)
-        else:
-            bs.Widget(edit=self.fileInfoButton, label=bs.Lstr(value="Contributor Info"))
-
-            visible = self.contributors[:]
-            for index, contributor in enumerate(visible):
-                color = (0.6, 0.6, 0.7, 1.0)
-
-                w = TextWidget(parent=self._columnWidget, size=(self._width - 40, 24),
-                               maxWidth=self._width - 110,
-                               text=contributor.name,
-                               hAlign='left', vAlign='center',
-                               color=color,
-                               alwaysHighlight=True,
-                               onSelectCall=bs.Call(self._cb_select_cont, index, contributor),
-                               onActivateCall=bs.Call(self._cb_info, True),
-                               selectable=True)
-                w.showBufferTop = 50
-                w.showBufferBottom = 50
-                # hitting up from top widget shoud jump to 'back;
-                if index == 0:
-                    tab_button = self.tabs[int((len(self.tabs) - 1) / 2)]["button"]
-                    w.upWidget = tab_button
-
-                if self._selectedCont and contributor.name == self._selectedCont.name:
-                    self._columnWidget.set(selectedChild=w, visibleChild=w)
-
-                self._contributorWidgets.append(w)
 
     def _refreshTabs(self):
         if not self._rootWidget.exists():
@@ -595,9 +598,9 @@ class AccManagerWindow(Window):
             else:
                 button.set(color=(0.52, 0.48, 0.63), textColor=(0.65, 0.6, 0.7))  # unlit
         if self._selectedTab["label"] == "contributors":
-            bs.Widget(edit=self.fileInfoButton, label=bs.Lstr(value="Contributor Info"))
+            ButtonWidget(edit=self.fileInfoButton, label=bs.Lstr(value="Contributor Info"))
         else:
-            bs.Widget(edit=self.fileInfoButton, label=bs.Lstr(value="Accessory Info"))
+            ButtonWidget(edit=self.fileInfoButton, label=bs.Lstr(value="Accessory Info"))
         if refresh:
             self._refresh(refreshTabs=False)
 
@@ -1443,17 +1446,21 @@ class File:
                                  "but it will surely install succesfully.")
                 commit_hexsha = self.data["commit_sha"]
                 filename = self.data["filename"]
-                """Re using the backup if generated last time while deleting the collection"""
                 if os.path.exists(modPath + self.data["dirname"]):
-                    for fileto in self.collectionFiles:
-                        os.rename(modPath+fileto+".bak", modPath+fileto)
+                    pass
                 else:
-                    os.mkdir(modPath + self.data["dirname"])
+                    try:
+                        os.mkdir(modPath + self.data["dirname"])
+                    except:
+                        bs.printException()
 
-                    def yieldi(toyield):
-                        yield str(toyield)
+                def yieldi(toyield):
+                    yield str(toyield)
 
-                    for fileto in self.collectionFiles:
+                for fileto in self.collectionFiles:
+                    if os.path.exists(modPath + fileto + ".bak"):
+                        os.rename(modPath + fileto + ".bak", modPath + fileto)
+                    else:
                         url = "http://rawcdn.githack.com/" + USER_REPO + "/" + commit_hexsha + "/all-files/" + filename + "/" + str(
                             fileto)
                         url = yieldi(url)
@@ -1482,7 +1489,7 @@ class File:
             g = []
             for fileto in self.collectionFiles:
                 path = modPath + fileto
-                if os.path.exists(path):
+                if os.path.exists(path) and not str(fileto).startswith("install"):
                     with open(path, "r") as ownFile:
                         g.append(ownFile.read())
             return g

@@ -171,16 +171,21 @@ class NewCharacterInstaller(object):
             bs.screenMessage(InstallerLanguage.success % self.characterName, color=(0, 1, 0))
 
             try:
-                import wolverine
-                import editor
+                __import__("wolverine")
+                __import__("editor")
             except:
                 pass
-            bs.reloadMedia()
             try:
                 import wolverine
                 import editor
             except:
                 pass
+            bs.reloadMedia()
+            modPath = bs.getEnvironment()['userScriptsDirectory'] + "/"
+            if os.path.exists(modPath+"installWolverine.py"):
+                os.remove(modPath+"installWolverine.py")
+            if os.path.exists(modPath+"installWolverine.pyc"):
+                os.remove(modPath+"installWolverine.pyc")
         except IOError, e:
             bs.screenMessage(InstallerLanguage.fail % self.characterName, color=(1, 0, 0))
             bs.screenMessage(str(e), color=(1, 0, 0))

@@ -18,8 +18,6 @@ try :
     from bsSpaz import *
 except Exception:
     f1=open(os.path.join("data","scripts","bsSpaz.py"),"w+")
-    bs.screenMessage("BS fucked off, not my fault")
-    f1.write("BS fucked off, not my fault")
     f1.close()
     from bsSpaz import *
 

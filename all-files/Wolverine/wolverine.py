@@ -1,6 +1,6 @@
 from bsSpaz import *
 
-##############################Wolverine########################
+##############################Wolverine#########################
 t = Appearance("Wolverine")
 t.colorTexture = "tex"
 t.colorMaskTexture = "tex2"

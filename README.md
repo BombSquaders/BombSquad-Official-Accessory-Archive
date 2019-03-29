@@ -1,10 +1,10 @@
 <h1 align="center">BombSquad-Official-Accessory-Archive</h1>
 <div align="center>
 
-<a href="https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/blob/master/LICENSE" align="center"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License" /></a>
-<a href="https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/blob/master/contribute.md" align="center"><img src="https://img.shields.io/badge/Contributors-most_welcome-green.svg" alt="Contributors are most welcome" /></a>
+<a href="https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/blob/master/LICENSE" align="center"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License" align="center" /></a>
+<a href="https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/blob/master/contribute.md" align="center"><img src="https://img.shields.io/badge/Contributors-most_welcome-green.svg" alt="Contributors are most welcome" align="center" /></a>
 
-<a href="http://bombsquadgame.com" align="center"><img src="https://thegreat.ml/images/bs.jpg" alt="BombSquad" /></a>
+<a href="http://bombsquadgame.com" align="center"><img src="https://thegreat.ml/images/bs.jpg" alt="BombSquad" align="center" /></a>
 
 <h2 align="center">This repository's aim</h2>
 
@@ -40,7 +40,7 @@ This repository is based on the MIT license. You can find the license [here](htt
 
 <h2 align="center">Support Us</h2>
 
-[![Support Us using PayPal](https://camo.githubusercontent.com/db80248d524fb93e55667909f3692a6a11027e6a/687474703a2f2f7261776769742e636f6d2f74776f6c66736f6e2f70617970616c2d6769746875622d627574746f6e2f6d61737465722f646973742f627574746f6e2e737667 )](https://www.powr.io/apps/paypal-button/view?id=19053507&mode=page&transaction_id=852033 )
+<a href="https://www.powr.io/apps/paypal-button/view?id=19053507&mode=page&transaction_id=852033"><img src="https://camo.githubusercontent.com/db80248d524fb93e55667909f3692a6a11027e6a/687474703a2f2f7261776769742e636f6d2f74776f6c66736f6e2f70617970616c2d6769746875622d627574746f6e2f6d61737465722f646973742f627574746f6e2e737667" alt="Support us using PayPal" align="center" /></a>
 
 <h2 align="center">Contributors</h2>
 
