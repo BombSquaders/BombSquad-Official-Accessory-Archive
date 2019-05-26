@@ -52,9 +52,30 @@
       "commit_sha": "dd2bbcfb39d10d387d4fd6430b68b17d99ffa19a",
       "changelog": [],
       "tag": null
+    },
+    "`WBox` BombSquad game's character": {
+      "author": "SmoothSoundz + TheGreat",
+      "name": "WBox  (BS character)",
+      "filename": "WBox",
+      "dirname": "WBox",
+      "category": "character",
+      "md5": "a3831945dfef08c7e246bb14167f9b25f5b31e03663cc44802b3205db775b5230df017c9421645e10bba5e42193ef668e40782a95f800a7b4aa8dabc7d7575c322d5b1de89389429d7dd4ea97bde24058e215586657d07857cff700f1aadbf5a91fc2bd68977b05f433cc6dd13547c8f9b3a36970a6fd071ac485cf2e5e6bb7addcf715f1cd8b37948e6a7da5b763cb691fe3c650fc8d069a1fa0c5b602600a113e604cdde8d29ada93f02df960c6e585beb46564960385b8e234baf9bf7a3c1e1e824e08f3a1284e6c7ad91284e85a8598dcc6fa4b23a2202bdababa220e848e1e824e08f3a1284e6c7ad91284e85a81a991f7e68813d7c47c62af37f902849e1e824e08f3a1284e6c7ad91284e85a807938ed4f5f169070872e2200ff5376cc03a7ac92c91eaa010df2685772364c6902e825352d07aaa86cf6857ab3ddace4f41a812373dde19b34a5640d6088514043b3fe9c7982e1c4dec4c0a5f4cab64",
+      "oldmd5s": [],
+      "commit_sha": "0982136e3536235bb142d5c825c87b551e830f8b",
+      "insImport": "installWBox",
+      "changelog": [],
+      "isCollection": true,
+      "collectionFiles": ["wb1.ogg", "wb2.ogg", "wb3.ogg", "wb4.ogg", "wbForeArm.bob", "wbHand.bob", "wbHead.bob", "wbHit1.ogg", "wbHit2.ogg", "wbLowerLeg.bob", "wbPelvis.bob", "wbTex.dds", "wbTex.ktx", "wbTex2.dds", "wbTex2.ktx", "wbTex3.dds", "wbTex3.ktx", "wbToes.bob", "wbTorso.bob", "wbUpperArm.bob", "wbUpperLeg.bob", "woobox.py", "installWBox.py"],
+      "tag": null
     }
   },
   "contributors": {
+    "SmooothSoundz": {
+      "contributions": "Idea and details of WBox character.",
+      "Common name": "SmooothSoundz",
+      "url": "https://github.com/SmooothSoundz",
+      "tag": "A good friend"
+    },
     "Benefit-Zebra": {
       "contributions": "Help in testing Accessories Manager.",
       "Common name": "Benefit-Zebra",
