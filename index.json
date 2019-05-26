@@ -65,7 +65,7 @@
       "insImport": "installWBox",
       "changelog": [],
       "isCollection": true,
-      "collectionFiles": ["wb1.ogg", "wb2.ogg", "wb3.ogg", "wb4.ogg", "wbForeArm.bob", "wbHand.bob", "wbHead.bob", "wbHit1.ogg", "wbHit2.ogg", "wbLowerLeg.bob", "wbPelvis.bob", "wbTex.dds", "wbTex.ktx", "wbTex2.dds", "wbTex2.ktx", "wbTex3.dds", "wbTex3.ktx", "wbToes.bob", "wbTorso.bob", "wbUpperArm.bob", "wbUpperLeg.bob", "woobox.py", "installWBox.py"],
+      "collectionFiles": ["WBox/wb1.ogg", "WBox/wb2.ogg", "WBox/wb3.ogg", "WBox/wb4.ogg", "WBox/wbForeArm.bob", "WBox/wbHand.bob", "WBox/wbHead.bob", "WBox/wbHit1.ogg", "WBox/wbHit2.ogg", "WBox/wbLowerLeg.bob", "WBox/wbPelvis.bob", "WBox/wbTex.dds", "WBox/wbTex.ktx", "WBox/wbTex2.dds", "WBox/wbTex2.ktx", "WBox/wbTex3.dds", "WBox/wbTex3.ktx", "WBox/wbToes.bob", "WBox/wbTorso.bob", "WBox/wbUpperArm.bob", "WBox/wbUpperLeg.bob", "woobox.py", "installWBox.py"],
       "tag": null
     }
   },
