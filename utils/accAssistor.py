@@ -2,7 +2,7 @@ import bsMainMenu
 from bsMainMenu import *
 import bsUI
 from bsUI import *
-import accManager
+import bs
 
 DEBUG = False
 
@@ -222,6 +222,7 @@ class RowWidget(Widget):
 class NewMainMenuActivity(MainMenuActivity):
     def onTransitionIn(self):
         import bsInternal
+        import bs
         bs.Activity.onTransitionIn(self)
         global gDidInitialTransition
         random.seed(123)
@@ -612,8 +613,9 @@ class NewMainMenuActivity(MainMenuActivity):
             # ..or in normal cases go back to the main menu
             else:
                 if mainWindow == 'AccessoriesManager':
+                    import bs
                     bsUI.uiGlobals['mainMenuWindow'] = \
-                        accManager.AccManagerWindow(transition=None).getRootWidget()
+                        bs.AccManagerWindow(transition=None).getRootWidget()
                 elif mainWindow == 'Gather':
                     bsUI.uiGlobals['mainMenuWindow'] = \
                         bsUI.GatherWindow(transition=None).getRootWidget()
@@ -1341,7 +1343,8 @@ class NewMainMenuWindow(MainMenuWindow):
     def _accPress(self):
 
         self._save_state()
+        import bs
         bs.containerWidget(edit=self._rootWidget, transition='outLeft')
-        uiGlobals['mainMenuWindow'] = accManager.AccManagerWindow(
+        uiGlobals['mainMenuWindow'] = bs.AccManagerWindow(
             originWidget=self._accButton, backLocationCls=NewMainMenuWindow).getRootWidget()
 bsUI.MainMenuWindow = NewMainMenuWindow

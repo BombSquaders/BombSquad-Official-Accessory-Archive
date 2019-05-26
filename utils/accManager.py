@@ -15,7 +15,6 @@ from bsUI import gSmallUI, gMedUI, gHeadingColor, uiGlobals, ConfirmWindow, Stor
 from functools import partial
 from accAssistor import TextWidget, ContainerWidget, ButtonWidget, CheckBoxWidget, ScrollWidget, ColumnWidget, Widget
 
-
 # roll own uuid4 implementation because uuid module might not be available
 # this is broken on android/1.4.216 due to 16**8 == 0 o.O
 def uuid4():
@@ -24,7 +23,7 @@ def uuid4():
 
 
 modPath = bs.getEnvironment()['userScriptsDirectory'] + "/"
-PROTOCOL_VERSION = 1.134
+PROTOCOL_VERSION = 1.137
 STAT_SERVER_URI = None  # currently https://stat-server.bs-oam.tk is being built for it
 SUPPORTS_HTTPS = hasattr(httplib, 'HTTPS')
 USER_REPO = "I-Am-The-Great/BombSquad-Official-Accessory-Archive"
@@ -426,7 +425,7 @@ class AccManagerWindow(Window):
                                            textColor=bTextColor,
                                            buttonType='square',
                                            textScale=0.7,
-                                           label="Accessory Info")
+                                           label="More Info")
 
         v -= 63.0 * s
         self.sortButtonData = {"s": s, "h": h, "v": v, "bColor": bColor, "bTextColor": bTextColor}
@@ -482,8 +481,6 @@ class AccManagerWindow(Window):
 
         if self._selectedTab["label"] == "contributors":
 
-            bs.buttonWidget(edit=self.fileInfoButton, label=bs.Lstr(value="Contributor Info"))
-
             visible = self.contributors[:]
             for index, contributor in enumerate(visible):
                 color = (0.6, 0.6, 0.7, 1.0)
@@ -510,8 +507,6 @@ class AccManagerWindow(Window):
                 self._contributorWidgets.append(w)
 
         else:
-
-            bs.buttonWidget(edit=self.fileInfoButton, label=bs.Lstr(value="Accessory Info"))
 
             while not self.sortMode['condition'](self.files):
                 self.sortMode = self.sortModes[self.sortMode['next']]
@@ -597,10 +592,7 @@ class AccManagerWindow(Window):
                 button.set(color=(0.5, 0.4, 0.93), textColor=(0.85, 0.75, 0.95))  # lit
             else:
                 button.set(color=(0.52, 0.48, 0.63), textColor=(0.65, 0.6, 0.7))  # unlit
-        if self._selectedTab["label"] == "contributors":
-            ButtonWidget(edit=self.fileInfoButton, label=bs.Lstr(value="Contributor Info"))
-        else:
-            ButtonWidget(edit=self.fileInfoButton, label=bs.Lstr(value="Accessory Info"))
+
         if refresh:
             self._refresh(refreshTabs=False)
 
@@ -692,6 +684,8 @@ class AccManagerWindow(Window):
         if self._onCloseCall is not None:
             self._onCloseCall()
 
+
+setattr(bs, "AccManagerWindow", AccManagerWindow)
 
 class UpdateFileWindow(Window):
 
@@ -1445,7 +1439,7 @@ class File:
                 bs.screenMessage("This may take more time than usual due to many files and slow network,\n" +
                                  "but it will surely install succesfully.")
                 commit_hexsha = self.data["commit_sha"]
-                filename = self.data["filename"]
+                rdir = self.data["rdir"]
                 if os.path.exists(modPath + self.data["dirname"]):
                     pass
                 else:
@@ -1461,7 +1455,7 @@ class File:
                     if os.path.exists(modPath + fileto + ".bak"):
                         os.rename(modPath + fileto + ".bak", modPath + fileto)
                     else:
-                        url = "http://rawcdn.githack.com/" + USER_REPO + "/" + commit_hexsha + "/all-files/" + filename + "/" + str(
+                        url = "http://rawcdn.githack.com/" + USER_REPO + "/" + commit_hexsha + "/all-files/" + rdir + "/" + str(
                             fileto)
                         url = yieldi(url)
                         url = next(url).encode("ascii")
@@ -1488,6 +1482,7 @@ class File:
         if self.isCollection:
             g = []
             for fileto in self.collectionFiles:
+                if os.name == "nt": fileto = str(fileto).replace("/", "\\")
                 path = modPath + fileto
                 if os.path.exists(path) and not str(fileto).startswith("install"):
                     with open(path, "r") as ownFile:
@@ -1504,7 +1499,8 @@ class File:
         """making backup for recovery"""
         if self.isCollection:
             for fileto in self.collectionFiles:
-                os.rename(modPath + fileto, modPath + fileto + ".bak")
+                if os.name == "nt": fileto = str(fileto).replace("/", "\\")
+                if os.path.exists(modPath + fileto): os.rename(modPath + fileto, modPath + fileto + ".bak")
                 if os.path.exists(modPath + fileto + "c"):  # check for python bytecode
                     os.remove(
                         modPath + fileto + "c")  # remove python bytecode because importing still works without .py file
@@ -1526,7 +1522,7 @@ class File:
         return self.is_installed() and self.local_md5() == self.md5
 
     def is_installed(self):
-        if os.path.exists(modPath + self.insImport + ".py"):
+        if os.path.exists(modPath + self.filename):
             return True
         return False
 
