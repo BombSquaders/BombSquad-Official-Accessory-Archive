@@ -1435,9 +1435,8 @@ class File:
 
     def writeCollectionData(self, callback, install):
         if "commit_sha" in self.data and "filename" in self.data:
-            try:
-                bs.screenMessage("This may take more time than usual due to many files and slow network,\n" +
-                                 "but it will surely install succesfully.")
+			bs.screenMessage("This may take more time than usual due to many files and slow network.")
+			try:
                 commit_hexsha = self.data["commit_sha"]
                 rdir = self.data["rdir"]
                 if os.path.exists(modPath + self.data["dirname"]):
