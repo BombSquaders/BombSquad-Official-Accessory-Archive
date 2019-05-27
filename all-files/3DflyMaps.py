@@ -1138,11 +1138,17 @@ def onJumpPress2(self):
                 self.node.jumpPressed = True
                 self.lastJumpTime = t
             self._turboFilterAddPress('jump')
-    except:
+    except AttributeError:
         if t - self.lastJumpTime >= self._jumpCooldown:
             self.node.jumpPressed = True
             self.lastJumpTime = t
         self._turboFilterAddPress('jump')
+    except Exception:
+        if t - self.lastJumpTime >= self._jumpCooldown:
+            self.node.jumpPressed = True
+            self.lastJumpTime = t
+        self._turboFilterAddPress('jump')
+        bs.printException()
 
 
 bsSpaz.Spaz.onJumpPress = onJumpPress2

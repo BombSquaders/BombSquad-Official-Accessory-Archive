@@ -1,8 +1,6 @@
 '''
 I was not able to think of a different method than edit in bsSpaz method so i used this method.
 '''
-import bs
-import bsUtils
 import os
 def scriptsEditor(textToFind,textToAdd):
     x = open(os.path.join("data","scripts","bsSpaz.py"),'r+').read()
@@ -15,9 +13,10 @@ if open(os.path.join('data','scripts','bsSpaz.py'),'r+').read().find('if charact
 if open(os.path.join('data','scripts','bsSpaz.py'),'r+').read().find('if self.node.character == \"Wolverine\":') == -1:
     scriptsEditor('bsUtils.showDamageCount(\'-\' + str(int(damage/10)) + \"%\",\n                                            msg.pos, msg.forceDirection)','\n\n                elif damage > 850:\n					if self.node.character == "Wolverine":\n						time_out = True\n						def normal():\n							self._punchPowerScale = gBasePunchPowerScale\n							self.node.handModel = bs.getModel("hand")\n						def rage():\n							self._punchPowerScale = gBasePunchPowerScale + 3/20*gBasePunchPowerScale\n							self.node.handModel = bs.getModel("claw")\n							bs.gameTimer(6000,bs.Call(normal))\n						rage()')
 try :
+    import bsSpaz
     from bsSpaz import *
 except Exception:
-    f1=open(os.path.join("data","scripts","bsSpaz.py"),"w+")
+    f1=open(os.path.join("data","scripts","bsSpaz.py"),"r+")
     f1.close()
     from bsSpaz import *
 
