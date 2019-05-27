@@ -1,12 +1,12 @@
 {
   "utils": {
     "accManager": {
-      "commit_sha": "370a488f88b10dd690d99fb36b09e4a15141de36",
+      "commit_sha": "1c387e0f1456547f1d018af5dcb6ef4fba80182e",
       "filename": "accManager.py",
       "requires": ["MainMenuPatcher"]
     },
     "MainMenuPatcher": {
-      "commit_sha": "dd2bbcfb39d10d387d4fd6430b68b17d99ffa19a",
+      "commit_sha": "1c387e0f1456547f1d018af5dcb6ef4fba80182e",
       "filename": "accAssistor.py"
     }
   },
