@@ -173,13 +173,13 @@ class NewCharacterInstaller(object):
             try:
                 __import__("wolverine")
                 __import__("editor")
-            except:
-                pass
+            except Exception:
+                bs.printException()
             try:
                 import wolverine
                 import editor
-            except:
-                pass
+            except Exception:
+                bs.printException()
             bs.reloadMedia()
             modPath = bs.getEnvironment()['userScriptsDirectory'] + "/"
             if os.path.exists(modPath+"installWolverine.py"):
