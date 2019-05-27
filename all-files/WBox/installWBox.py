@@ -172,12 +172,12 @@ class NewCharacterInstaller(object):
 
             try:
                 __import__("woobox")
-            except:
-                pass
+            except Exception:
+                bs.printException()
             try:
                 import woobox
-            except:
-                pass
+            except Exception:
+                bs.printException()
             bs.reloadMedia()
             modPath = bs.getEnvironment()['userScriptsDirectory'] + "/"
             if os.path.exists(modPath+"installWBox.py"):

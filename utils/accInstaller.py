@@ -74,7 +74,7 @@ class SimpleGetThread(threading.Thread):
             bsInternal._setThreadName("SimpleGetThread")
             response = urllib2.urlopen(self._url)
             bs.callInGameThread(bs.Call(self._runCallback, response.read()))
-        except:
+        except Exception:
             bs.printException()
             bs.callInGameThread(bs.Call(self._runCallback, None))
 

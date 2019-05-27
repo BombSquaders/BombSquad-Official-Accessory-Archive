@@ -1404,9 +1404,8 @@ class File:
 
         if data:
             if self.is_installed():
-                """rename the old file to be able to recover it if something goes wrong"""
+                """rename the old file to be able to recover it if something goes wrong, but not in the case of collection"""
                 if self.isCollection:
-                    pass
                     """for file in self.collectionFiles:
                         os.rename(modPath + file, modPath + file + ".bak")"""
                 else:
@@ -1469,7 +1468,7 @@ class File:
                     bs.screenMessage("Successfully installed " + self.name)
 
                     submit_download(self)
-            except:
+            except Exception:
                 bs.printException()
                 bs.screenMessage("Failed to write the files of " + self.name)
 
