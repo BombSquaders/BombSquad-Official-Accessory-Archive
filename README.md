@@ -1,5 +1,5 @@
 <h1 align="center">BombSquad-Official-Accessory-Archive</h1>
-<div align="center>
+<div align="center">
 
 <a href="https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/blob/master/LICENSE" align="center"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT License" align="center" /></a>
 <a href="https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/blob/master/contribute.md" align="center"><img src="https://img.shields.io/badge/Contributors-most_welcome-green.svg" alt="Contributors are most welcome" align="center" /></a>
