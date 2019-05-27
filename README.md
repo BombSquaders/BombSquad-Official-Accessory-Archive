@@ -49,10 +49,13 @@ Repository's main idea, most needed help and support.
 
 ### [TheGreat (Rahul Raman)](https://thegreat.ml )
 This repository's creation, `BombSquad Official Accessories Manager`, Wolverine character of BS, 3D
- flying maps of BS, and new custom characters of BS.
+ flying maps of BS, new custom characters of BS, and `WBox` character.
 
 ### [Benefit-Zebra](https://github.com/Benefit-Zebra )
 Testing the `BombSquad Official Accessories Manager`.
+
+### [SmooothSoundz](https://github.com/SmooothSoundz )
+Idea of the `WBox` character.
 
 <h2 align="center">Contributing</h2>
 
