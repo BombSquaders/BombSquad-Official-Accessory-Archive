@@ -285,7 +285,7 @@ class AccManager_ServerCallThread(threading.Thread):
             if self._callback is not None:
                 bs.callInGameThread(bs.Call(self._runCallback, responseData, response.getcode()))
 
-        except:
+        except Exception:
             bs.printException()
             if self._callback is not None:
                 bs.callInGameThread(bs.Call(self._runCallback, None, None))
@@ -1361,16 +1361,16 @@ class File:
         self.author = d.get('author')
         if 'filename' in d:
             self.filename = d['filename']
-            iter = self.filename.split(".")
+            ite_r = self.filename.split(".")
             self.base = ""
             count = 0
-            for i in iter:
+            for i in ite_r:
                 count += 1
-                if count <= len(iter) - 1:
+                if count <= len(ite_r) - 1:
                     self.base += str(i) + "."
                 else:
                     self.base += str(i)
-            del iter
+            del ite_r
             del count
             del i
         else:
