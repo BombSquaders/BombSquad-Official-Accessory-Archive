@@ -1437,41 +1437,41 @@ class File:
         if "commit_sha" in self.data and "filename" in self.data:
 			bs.screenMessage("This may take more time than usual due to many files and slow network.")
 			try:
-                commit_hexsha = self.data["commit_sha"]
-                rdir = self.data["rdir"]
-                if os.path.exists(modPath + self.data["dirname"]):
-                    pass
-                else:
-                    try:
-                        os.mkdir(modPath + self.data["dirname"])
-                    except:
-                        bs.printException()
+				commit_hexsha = self.data["commit_sha"]
+				rdir = self.data["rdir"]
+				if os.path.exists(modPath + self.data["dirname"]):
+					pass
+				else:
+					try:
+						os.mkdir(modPath + self.data["dirname"])
+					except Exception:
+						bs.printException()
 
-                def yieldi(toyield):
-                    yield str(toyield)
+				def yieldi(toyield):
+					yield str(toyield)
 
-                for fileto in self.collectionFiles:
-                    if os.path.exists(modPath + fileto + ".bak"):
-                        os.rename(modPath + fileto + ".bak", modPath + fileto)
-                    else:
-                        url = "http://rawcdn.githack.com/" + USER_REPO + "/" + commit_hexsha + "/all-files/" + rdir + "/" + str(
-                            fileto)
-                        url = yieldi(url)
-                        url = next(url).encode("ascii")
-                        data = urllib2.urlopen(url).read()
-                        with open(modPath + fileto, "wb") as f:
-                            f.write(data)
-                            f.close()
-                if callback:
-                    callback(self, self.data)
-                if install:
-                    __import__(self.insImport)
-                    bs.screenMessage("Successfully installed " + self.name)
+				for fileto in self.collectionFiles:
+					if os.path.exists(modPath + fileto + ".bak"):
+						os.rename(modPath + fileto + ".bak", modPath + fileto)
+					else:
+						url = "http://rawcdn.githack.com/" + USER_REPO + "/" + commit_hexsha + "/all-files/" + rdir + "/" + str(
+							fileto)
+						url = yieldi(url)
+						url = next(url).encode("ascii")
+						data = urllib2.urlopen(url).read()
+						with open(modPath + fileto, "wb") as f:
+							f.write(data)
+							f.close()
+				if callback:
+					callback(self, self.data)
+				if install:
+					__import__(self.insImport)
+					bs.screenMessage("Successfully installed " + self.name)
 
-                submit_download(self)
-            except:
-                bs.printException()
-                bs.screenMessage("Failed to write the files of " + self.name)
+				submit_download(self)
+			except:
+				bs.printException()
+				bs.screenMessage("Failed to write the files of " + self.name)
 
         else:
             raise RuntimeError("Invalid accessory, " + self.name)
