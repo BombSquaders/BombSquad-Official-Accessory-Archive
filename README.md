@@ -38,7 +38,7 @@ This repository is based on the MIT license. You can find the license [here](htt
  repository's files when distributing the code to others, your modified version must also be open source with
  this same license and you can not make profit from that and there is no liability or warranty of this project.
 
-<h2 align="center">For all none code related documentation please refer to the [wiki pages](https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/wiki/)</h2>
+## For all none code related documentation please refer to the [wiki pages](https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/wiki/)
 
 <h2 align="center">Support Us</h2>
 
