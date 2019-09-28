@@ -12,6 +12,6 @@
   [Real full name: Cannot be exposed.](https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/blob/master/contributors/Benefit-Zebra.md )
   [Contributions till now: helped in testings](https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/blob/master/contributors/Benefit-Zebra.md )
 
-## [SmoothSoundz](https://github.com/SmooothSoundz )
+## [Smooth Soundz](https://github.com/SmooothSoundz )
   [Real full name: Cannot be exposed.](https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/blob/master/contributors/SmoothSoundz.md )
   [Contributions till now: the idea and details of `WBox` character](https://github.com/I-Am-The-Great/BombSquad-Official-Accessory-Archive/blob/master/contributors/SmoothSoundz.md )
