@@ -24,7 +24,7 @@ def uuid4():
 
 
 modPath = bs.getEnvironment()['userScriptsDirectory'] + "/"
-PROTOCOL_VERSION = 1.139
+PROTOCOL_VERSION = 1.140
 STAT_SERVER_URI = None  # currently https://stat-server.bs-oam.tk is being built for it
 SUPPORTS_HTTPS = hasattr(httplib, 'HTTPS')
 USER_REPO = "I-Am-The-Great/BombSquad-Official-Accessory-Archive"
@@ -1483,7 +1483,7 @@ class File:
                 path = modPath + fileto
                 if os.path.exists(path) and not str(fileto).startswith("install"):
                     with open(path, "r") as ownFile:
-                        g += ownFile.read()
+                        g += str(ownFile.read(5000))
             return g
         else:
             path = modPath + self.insImport + ".py"

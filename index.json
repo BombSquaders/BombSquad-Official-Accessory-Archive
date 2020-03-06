@@ -20,7 +20,7 @@
       "category": "character",
       "md5": "c0da4e486a0f6ada5dc632e5061a388a6051e32140a079d3174d19b317c8150a107b6aed3b2343494b39d99fa4f8ef501ff21302a49724621c28f89f1c1061dade193d2b6c3b351e4ac5dddc847f296d88c37f7413fbf74308f21812774ef1dfb5e846e8b13dc928f8f8a749ff2afe46c4ec1583760a53857f7520390484e598751cb17b152a0f82647be05af9e83f232f6d809d22e044bafb5947f9b6e7633aea3ffda747d37d6c772ba97ab676744e6cd2a17045647e5ec3a74f43cfa872d3099b38739a2491e2f3973c6e3ecc4816598dcc6fa4b23a2202bdababa220e848390df0471c5024c9ba4cc30a1fa11bf95185884c145214d5d28614d9bc8468c6a31120ba2aac833bbeb1dfa86e295f466029361358b0770941d573faba60ef7bec2951b66daa78f7bc8f1c3a7b8737ca6690762f566a59faf0a39ea27b06502e428d36f0faf49f6dd4d6cd646b005486bee298f3fe1cdf1d5d943ba4cbd3d16fa9ae26b5b2e7f79fa08c92ccad149f13",
       "oldmd5s": [],
-      "commit_sha": "370a488f88b10dd690d99fb36b09e4a15141de36",
+      "commit_sha": "d7a30254ba86ca1fef51f0e9689ed9dbd9f8ae19",
       "insImport": "installWolverine",
       "changelog": [],
       "isCollection": true,
@@ -97,6 +97,6 @@
       "tag": "Owner, the maker of Accessories Archive"
     }
   },
-  "version": 1.139,
+  "version": 1.140,
   "least-to-work": 1.139
 }
