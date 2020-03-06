@@ -1,7 +1,7 @@
 {
   "utils": {
     "accManager": {
-      "commit_sha": "6e98fb4bc47951d0ba342807bfbf521c93bc13e4",
+      "commit_sha": "0ebcecf51f1cff40a0e8e612f4e8622e457321d1",
       "filename": "accManager.py",
       "requires": ["MainMenuPatcher"]
     },
