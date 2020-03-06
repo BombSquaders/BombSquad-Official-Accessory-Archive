@@ -15,6 +15,7 @@ from bsUI import gSmallUI, gMedUI, gHeadingColor, uiGlobals, ConfirmWindow, Stor
 from functools import partial
 from accAssistor import TextWidget, ContainerWidget, ButtonWidget, CheckBoxWidget, ScrollWidget, ColumnWidget, Widget
 
+
 # roll own uuid4 implementation because uuid module might not be available
 # this is broken on android/1.4.216 due to 16**8 == 0 o.O
 def uuid4():
@@ -23,7 +24,7 @@ def uuid4():
 
 
 modPath = bs.getEnvironment()['userScriptsDirectory'] + "/"
-PROTOCOL_VERSION = 1.137
+PROTOCOL_VERSION = 1.139
 STAT_SERVER_URI = None  # currently https://stat-server.bs-oam.tk is being built for it
 SUPPORTS_HTTPS = hasattr(httplib, 'HTTPS')
 USER_REPO = "I-Am-The-Great/BombSquad-Official-Accessory-Archive"
@@ -38,7 +39,7 @@ def bsGetAPIVersion():
     return 4
 
 
-quittoapply = None
+quit_to_apply = None
 checkedMainMenu = False
 
 if 'acc_manager_config' not in bs.getConfig():
@@ -56,7 +57,7 @@ def index_url(branch=None):
     yield "http://raw.githack.com/{}/{}/index.json".format(USER_REPO, branch)
 
 
-def file_url(data, fileto=None):
+def file_url(data):
     if "commit_sha" in data and "filename" in data:
         commit_hexsha = data["commit_sha"]
         filename = data["filename"]
@@ -687,6 +688,7 @@ class AccManagerWindow(Window):
 
 setattr(bs, "AccManagerWindow", AccManagerWindow)
 
+
 class UpdateFileWindow(Window):
 
     def __init__(self, file, onok, swish=True, back=False):
@@ -804,15 +806,15 @@ class RateFileWindow(Window):
 class QuitToApplyWindow(Window):
 
     def __init__(self):
-        global quittoapply
-        if quittoapply is not None:
-            quittoapply.delete()
-            quittoapply = None
+        global quit_to_apply
+        if quit_to_apply is not None:
+            quit_to_apply.delete()
+            quit_to_apply = None
         bs.playSound(bs.getSound('swish'))
         text = "Quit BS to load update?"
         if bs.getEnvironment()["platform"] == "android":
             text += "\n(On Android you have to close the activity)"
-        self._rootWidget = quittoapply = ConfirmWindow(text, self._doFadeAndQuit).getRootWidget()
+        self._rootWidget = quit_to_apply = ConfirmWindow(text, self._doFadeAndQuit).getRootWidget()
 
     def _doFadeAndQuit(self):
         # FIXME: using protected apis
@@ -1330,11 +1332,8 @@ class Contributor:
 
     def __init__(self, d):
         self.data = d
-        if "Real full name" in d:
-            self.name = d.get('Common name') + "(" + d.get('Real full name') + ")"
-        else:
-            self.name = d.get('Common name')
-        self.contributions = d.get("contributions", [])
+        self.name = d.get('name')
+        self.contributions = d.get("contributions", "")
         self.url = d.get('url', False)
         self.tag = d.get('tag', False)
 
@@ -1428,13 +1427,13 @@ class File:
 
     def install(self, callback, install=True):
         if self.isCollection:
+            bs.screenMessage("This may take more time than usual due to many files and slow network.")
             self.writeCollectionData(callback, install)
         else:
             fetch_file(self.data, partial(self.writeData, callback, install))
 
     def writeCollectionData(self, callback, install):
         if "commit_sha" in self.data and "filename" in self.data:
-            bs.screenMessage("This may take more time than usual due to many files and slow network.")
             try:
                 commit_hexsha = self.data["commit_sha"]
                 rdir = self.data["rdir"]
@@ -1478,13 +1477,13 @@ class File:
     @property
     def ownData(self):
         if self.isCollection:
-            g = []
+            g = ""
             for fileto in self.collectionFiles:
                 if os.name == "nt": fileto = str(fileto).replace("/", "\\")
                 path = modPath + fileto
                 if os.path.exists(path) and not str(fileto).startswith("install"):
                     with open(path, "r") as ownFile:
-                        g.append(ownFile.read())
+                        g += ownFile.read()
             return g
         else:
             path = modPath + self.insImport + ".py"
@@ -1525,13 +1524,7 @@ class File:
         return False
 
     def local_md5(self):
-        if self.isCollection:
-            g = ""
-            for data in self.ownData:
-                g += md5(data).hexdigest()
-            return g
-        else:
-            return md5(self.ownData).hexdigest()
+        return md5(self.ownData).hexdigest()
 
     def is_outdated(self):
         if not self.is_installed():

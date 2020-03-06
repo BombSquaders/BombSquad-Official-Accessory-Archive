@@ -12,7 +12,7 @@
   },
   "all-files": {
     "Wolverine": {
-      "author": "TheGreat (Rahul Raman)",
+      "author": "Rahul Raman",
       "name": "Wolverine",
       "filename": "wolverine.py",
       "rdir": "Wolverine",
@@ -31,7 +31,7 @@
       "tag": null
     },
     "3D fly Maps": {
-      "author": "TheGreat (Rahul Raman)",
+      "author": "Rahul Raman",
       "name": "3D fly Maps",
       "filename": "3DflyMaps.py",
       "category": "map",
@@ -43,7 +43,7 @@
       "tag": null
     },
     "new custom characters": {
-      "author": "TheGreat (Rahul Raman)",
+      "author": "Rahul Raman",
       "name": "new custom characters",
       "filename": "manyNewCharacters.py",
       "category": "character",
@@ -74,30 +74,29 @@
   "contributors": {
     "Smoooth Soundz": {
       "contributions": "Idea and details of WBox character.",
-      "Common name": "SmooothSoundz",
+      "name": "Smoooth Soundz",
       "url": "https://github.com/SmooothSoundz",
       "tag": "A good friend"
     },
     "Benefit-Zebra": {
       "contributions": "Help in testing Accessories Manager.",
-      "Common name": "Benefit-Zebra",
+      "name": "Benefit-Zebra",
       "url": "https://github.com/Benefit-Zebra",
       "tag": "A good friend"
     },
     "MattZ45986": {
       "contributions": "Repository's main idea, most needed help and support.",
-      "Common name": "Matt",
+      "name": "MattZ",
       "url": "https://github.com/MattZ45986",
       "tag": "Owner, head of Accessories Archive"
     },
-    "TheGreat": {
+    "Rahul Raman": {
       "contributions": "The repository, this mod, 3D fly maps,\n many custom characters, and wolverine.",
-      "Real full name": "Rahul Raman",
-      "Common name": "TheGreat",
-      "url": "https://thegreat.ml/",
+      "name": "Rahul Raman",
+      "url": "https://thegr8.tk/",
       "tag": "Owner, the maker of Accessories Archive"
     }
   },
-  "version": 1.137,
-  "least-to-work": 1.137
+  "version": 1.139,
+  "least-to-work": 1.139
 }
