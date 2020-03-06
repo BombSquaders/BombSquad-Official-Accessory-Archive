@@ -8,6 +8,7 @@ import os
 import os.path
 
 import httplib
+
 SUPPORTS_HTTPS = hasattr(httplib, 'HTTPS')
 
 modPath = bs.getEnvironment()['userScriptsDirectory'] + "/"
@@ -43,6 +44,7 @@ def try_fetch_cb(generator, callback):
                 SimpleGetThread(next(generator), f).start()
             except StopIteration:
                 callback(None)
+
     SimpleGetThread(next(generator), f).start()
 
 
@@ -94,6 +96,7 @@ def check_finished():
         bs.screenMessage("deleted self")
     bs.screenMessage("activating accessories manager")
     __import__(ENTRY_MOD)
+    bs.reloadMedia()
 
 
 def install(data, script):
@@ -122,7 +125,6 @@ def onIndex(data):
         return
     data = json.loads(data)
     install(data["utils"], ENTRY_MOD)
-
 
 
 try_fetch_cb(index_url(), onIndex)
