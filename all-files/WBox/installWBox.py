@@ -5,7 +5,7 @@ import shutil
 import hashlib
 
 NEW_CHARACTER_DIRECTORY = 'Wbox'  # The directory contains which were described in README
-NEW_CHARACTER_NAME = 'Wbox'  # ensure unicode
+NEW_CHARACTER_NAME = u'Wbox'  # ensure unicode
 SUPPORTED_PLATFORMS = ['android', 'other']  # other means Win, Linux, Mac as they all use .dds
 
 
